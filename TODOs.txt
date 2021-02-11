@@ -1,0 +1,23 @@
+TODOS
+
+Gameplay
+--------------
+[] Add kick ability
+[] (Maybe) Add sprinting
+
+Multiplayer
+--------------
+[] Fix moving platforms in multiplayer
+[] Fix random doors in multiplayer
+
+Levels
+--------------
+[] Fix stairs on level1 (add simple collider to them)
+[] Redo lighting on level1
+
+Database
+--------------
+
+Other
+--------------
+[] Figure out why the gamemode BP breaks on relaunch
