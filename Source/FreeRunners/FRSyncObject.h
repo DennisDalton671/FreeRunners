@@ -13,16 +13,17 @@ class FREERUNNERS_API AFRSyncObject : public AActor
 	
 public:	
 	// Sets default values for this actor's properties
-	AFRSyncObject();
+	AFRSyncObject(const FObjectInitializer& ObjectInitializer);
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void StartObject();
+
 protected:
+	bool ServerStart{};
 	int SyncObjectIndex{};
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-	
 };
