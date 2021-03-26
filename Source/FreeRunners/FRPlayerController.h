@@ -10,8 +10,11 @@
  * 
  */
 UCLASS()
-class FREERUNNERS_API AFRPlayerController : public APlayerController
-{
+class FREERUNNERS_API AFRPlayerController : public APlayerController{
 	GENERATED_BODY()
-	
+public:
+	/** notify player about started match */
+	//UFUNCTION(reliable, client)
+	//void ClientGameStarted();
+
 };

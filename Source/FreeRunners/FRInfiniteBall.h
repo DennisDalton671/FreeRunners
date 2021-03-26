@@ -6,15 +6,12 @@
 #include "FRSyncObject.h"
 #include "FRInfiniteBall.generated.h"
 
-/**
- * 
- */
 UCLASS()
-class FREERUNNERS_API AFRInfiniteBall : public AFRSyncObject
-{
+class FREERUNNERS_API AFRInfiniteBall : public AFRSyncObject{
 	GENERATED_BODY()
 
-	float _timer;
+protected:
+	void BeginPlay() override;
 
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
@@ -23,12 +20,9 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	float delay = 5.f;
 
+	AFRInfiniteBall();
 	AFRInfiniteBall(const FObjectInitializer& ObjectInitializer);
 
-	virtual void Tick(float DeltaTime) override;
-	virtual void StartObject() override;
-
-protected:
-	virtual void BeginPlay() override;
-	virtual void Destroyed() override;
+	void StartObject_Implementation() override;
+	void Respawn();
 };

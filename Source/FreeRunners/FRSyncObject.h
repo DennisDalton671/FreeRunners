@@ -6,21 +6,26 @@
 #include "GameFramework/Actor.h"
 #include "FRSyncObject.generated.h"
 
-UCLASS()
+UCLASS(Abstract)
 class FREERUNNERS_API AFRSyncObject : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
+	/** [server] starts objects that need to be synced across clients */
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="FreeRunners")
+	void StartObject();
+	virtual void StartObject_Implementation();
+
+	AFRSyncObject();
 	AFRSyncObject(const FObjectInitializer& ObjectInitializer);
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> & OutLifetimeProps) const override;
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	virtual void StartObject();
-
 protected:
+	UPROPERTY(Replicated, BlueprintReadWrite, Category="FreeRunners")
 	bool ServerStart{};
 	int SyncObjectIndex{};
 
