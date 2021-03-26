@@ -56,6 +56,9 @@ void AFRGameMode::HandleMatchHasStarted(){
 			//PC->ClientGameStarted();
 		}
 	}
+
+	//start sync objects
+	MulticastStartSyncObjects();
 }
 
 void AFRGameMode::Tick(float DeltaTime) {

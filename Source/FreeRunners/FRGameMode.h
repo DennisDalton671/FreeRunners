@@ -31,7 +31,7 @@ public:
 	virtual void HandleMatchHasStarted() override;
 	/** updates the game state's round time */
 	virtual void Tick(float DeltaTime) override;
-
+	
 	AFRGameMode();
 
 	/** [server + local] starts all sync objects */
