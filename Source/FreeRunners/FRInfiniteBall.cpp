@@ -36,9 +36,10 @@ void AFRInfiniteBall::BeginPlay() {
 void AFRInfiniteBall::Respawn() {
 	if(GetWorld()->IsGameWorld()) {
 		FVector loc = GetRootComponent()->GetRelativeLocation();
-		AFRInfiniteBall* newBall = Cast<AFRInfiniteBall>(GetWorld()->SpawnActor(AFRInfiniteBall::StaticClass(), &loc, 0));
+		AFRInfiniteBall* newBall = Cast<AFRInfiniteBall>(GetWorld()->SpawnActor(AFRInfiniteBall::StaticClass(), &loc));
 		if(newBall) {
 			newBall->ServerStart = true;
+			newBall->SetActorScale3D(this->GetActorScale3D());
 			newBall->BallMeshComponent->SetSimulatePhysics(true);
 			GetWorldTimerManager().SetTimer(newBall->TimeHandle, newBall, &AFRInfiniteBall::Respawn, delay);
 		}

@@ -17,9 +17,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	class UInterpToMovementComponent* InterpComponent;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="FreeRunners")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="FreeRunners", Meta = (MakeEditWidget = true))
 	FVector StartLocation;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="FreeRunners")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="FreeRunners", Meta = (MakeEditWidget = true))
 	FVector EndLocation;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="FreeRunners")
 	float Duration;
