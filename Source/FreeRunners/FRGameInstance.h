@@ -7,22 +7,10 @@
 #include "FRGameInstance.generated.h"
 
 UENUM(BlueprintType)
-enum class EFRState : uint8{
-	Startup,
-	Playing,
-	MainMenu,
-	Loading,
-	Multiplayer,
-	LevelSelect,
-	Settings
-};
+enum class EFRState : uint8{ Startup, Playing, MainMenu, Loading, Multiplayer, LevelSelect, Settings };
 
 UENUM(BlueprintType)
-enum class EOnlineMode : uint8{
-	Offline,
-	LAN,
-	Online
-};
+enum class EOnlineMode : uint8{ Offline, LAN, Online };
 
 class UUserWidget;
 

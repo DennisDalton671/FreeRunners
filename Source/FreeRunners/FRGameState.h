@@ -17,4 +17,7 @@ public :
 
 	AFRGameState();
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> & OutLifetimeProps) const override;
+
+	UFUNCTION(BlueprintCallable, Category="FreeRunners")
+	FText GetTimeAsText();
 };
