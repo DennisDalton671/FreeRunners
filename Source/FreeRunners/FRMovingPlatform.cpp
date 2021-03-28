@@ -8,14 +8,12 @@ AFRMovingPlatform::AFRMovingPlatform() : AFRSyncObject() {
 	PrimaryActorTick.bCanEverTick = true;
 	SetReplicateMovement(true);
 
-	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("CylinderMeshComponent"));
+	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
 	MeshComponent->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 
 	InterpComponent = CreateDefaultSubobject<UInterpToMovementComponent>(TEXT("InterpToMovement"));
 	InterpComponent->BehaviourType = EInterpToBehaviourType::PingPong;
 	InterpComponent->bAutoActivate = false;
-	InterpComponent->ControlPoints = {FInterpControlPoint(StartLocation, true), FInterpControlPoint(EndLocation, true)};
-	InterpComponent->Duration = Duration;
 }
 
 AFRMovingPlatform::AFRMovingPlatform(const FObjectInitializer& ObjectInitializer) : AFRSyncObject(ObjectInitializer) {
@@ -28,8 +26,14 @@ AFRMovingPlatform::AFRMovingPlatform(const FObjectInitializer& ObjectInitializer
 	InterpComponent = CreateDefaultSubobject<UInterpToMovementComponent>(TEXT("InterpToMovement"));
 	InterpComponent->BehaviourType = EInterpToBehaviourType::PingPong;
 	InterpComponent->bAutoActivate = false;
-	InterpComponent->ControlPoints = {FInterpControlPoint(StartLocation, true), FInterpControlPoint(EndLocation, true)};
+}
+
+void AFRMovingPlatform::BeginPlay(){
+	Super::BeginPlay();
+	
+	InterpComponent->ControlPoints = TArray<FInterpControlPoint>({FInterpControlPoint(StartLocation, true), FInterpControlPoint(EndLocation, true)});
 	InterpComponent->Duration = Duration;
+	InterpComponent->FinaliseControlPoints();
 }
 
 void AFRMovingPlatform::StartObject_Implementation() {

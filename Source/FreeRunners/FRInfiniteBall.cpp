@@ -29,20 +29,18 @@ AFRInfiniteBall::AFRInfiniteBall(const FObjectInitializer& ObjectInitializer) : 
 	BallMeshComponent->SetMaterial(0, BasicMat.Object);
 }
 
-void AFRInfiniteBall::BeginPlay(){
+void AFRInfiniteBall::BeginPlay() {
 	Super::BeginPlay();
-	
-	FTimerHandle UnusedHandle;
-	GetWorldTimerManager().SetTimer(UnusedHandle, this, &AFRInfiniteBall::Respawn, delay);
 }
 
 void AFRInfiniteBall::Respawn() {
 	if(GetWorld()->IsGameWorld()) {
 		FVector loc = GetRootComponent()->GetRelativeLocation();
-		AFRInfiniteBall* newBall = Cast<AFRInfiniteBall, AActor>(GetWorld()->SpawnActor(AFRInfiniteBall::StaticClass(), &loc, 0));
+		AFRInfiniteBall* newBall = Cast<AFRInfiniteBall>(GetWorld()->SpawnActor(AFRInfiniteBall::StaticClass(), &loc, 0));
 		if(newBall) {
 			newBall->ServerStart = true;
 			newBall->BallMeshComponent->SetSimulatePhysics(true);
+			GetWorldTimerManager().SetTimer(newBall->TimeHandle, newBall, &AFRInfiniteBall::Respawn, delay);
 		}
 	}
 	Destroy();
@@ -52,4 +50,5 @@ void AFRInfiniteBall::StartObject_Implementation() {
 	AFRSyncObject::StartObject_Implementation();
 
 	BallMeshComponent->SetSimulatePhysics(true);
+	GetWorldTimerManager().SetTimer(TimeHandle, this, &AFRInfiniteBall::Respawn, delay);
 }

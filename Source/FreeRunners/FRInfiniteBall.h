@@ -20,6 +20,8 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	float delay = 5.f;
 
+	FTimerHandle TimeHandle;
+
 	AFRInfiniteBall();
 	AFRInfiniteBall(const FObjectInitializer& ObjectInitializer);
 

@@ -17,15 +17,17 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	class UInterpToMovementComponent* InterpComponent;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="FreeRunners")
 	FVector StartLocation;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="FreeRunners")
 	FVector EndLocation;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="FreeRunners")
 	float Duration;
 
 	AFRMovingPlatform();
 	AFRMovingPlatform(const FObjectInitializer& ObjectInitializer);
+
+	void BeginPlay() override;
 
 	void StartObject_Implementation() override;
 };

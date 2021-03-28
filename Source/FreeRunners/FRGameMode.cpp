@@ -5,6 +5,11 @@
 #include "FRPlayerController.h"
 #include "FRSyncObject.h"
 
+#include "Kismet/GameplayStatics.h"
+#include "GameFramework/PlayerStart.h"
+#include "UObject/ConstructorHelpers.h"
+#include "GameFramework/Character.h"
+
 AFRGameMode::AFRGameMode() : AGameMode() {
 	bDelayedStart = true;
 
@@ -50,12 +55,17 @@ void AFRGameMode::HandleMatchHasStarted(){
 	MyGameState->RoundTime = 0;		
 
 	// notify players
+	/*
 	for (FConstControllerIterator It = GetWorld()->GetControllerIterator(); It; ++It){
 		AFRPlayerController* PC = Cast<AFRPlayerController>(*It);
 		if (PC){
 			//PC->ClientGameStarted();
 		}
 	}
+	*/
+
+	//spawn players
+	//SpawnPlayerActors();
 
 	//start sync objects
 	MulticastStartSyncObjects();
@@ -73,5 +83,15 @@ void AFRGameMode::Tick(float DeltaTime) {
 void AFRGameMode::MulticastStartSyncObjects_Implementation() {
 	for(auto obj : SyncObjects) {
 		obj->StartObject();
+	}
+}
+
+void AFRGameMode::SpawnPlayerActors() {
+	for(APlayerController* pc : PlayerControllers) {
+		APlayerStart* start = Cast<APlayerStart>(UGameplayStatics::GetActorOfClass(GetWorld(), APlayerStart::StaticClass()));
+		ConstructorHelpers::FClassFinder<ACharacter> FRCharacter(TEXT("/Game/Blueprints/ThirdPersonCharacter"));
+		FActorSpawnParameters params; params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+		APawn* pawn = Cast<APawn>(GetWorld()->SpawnActor(FRCharacter.Class, &start->GetTransform(), params));
+		pc->Possess(pawn);
 	}
 }

@@ -18,6 +18,8 @@ public:
 	int32 PreRoundTime;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FreeRunners")
 	int32 RespawnDelay;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FreeRunners")
+	int32 PlayerCount;
 
 	TArray<AFRSyncObject*> SyncObjects;
 	TArray<APlayerController*> PlayerControllers;
@@ -39,4 +41,6 @@ public:
 	void MulticastStartSyncObjects();
 	void MulticastStartSyncObjects_Implementation();
 
+	/** [server] spawns actors for all players */
+	void SpawnPlayerActors();
 };
