@@ -21,7 +21,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FreeRunners")
 	int32 PlayerCount;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FreeRunners")
 	TArray<AFRSyncObject*> SyncObjects;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FreeRunners")
 	TArray<APlayerController*> PlayerControllers;
 
 	/** Initialize the game. This is called before actors' PreInitializeComponents. */

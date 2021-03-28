@@ -40,6 +40,7 @@ void AFRInfiniteBall::Respawn() {
 		if(newBall) {
 			newBall->ServerStart = true;
 			newBall->SetActorScale3D(this->GetActorScale3D());
+			newBall->BallMeshComponent->SetIsReplicated(true);
 			newBall->BallMeshComponent->SetSimulatePhysics(true);
 			GetWorldTimerManager().SetTimer(newBall->TimeHandle, newBall, &AFRInfiniteBall::Respawn, delay);
 		}

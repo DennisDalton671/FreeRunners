@@ -53,6 +53,7 @@ void AFRGameMode::HandleMatchHasStarted(){
 
 	AFRGameState* const MyGameState = Cast<AFRGameState>(GameState);
 	MyGameState->RoundTime = 0;		
+	MyGameState->RoundPaused = false;
 
 	// notify players
 	/*
@@ -72,7 +73,7 @@ void AFRGameMode::HandleMatchHasStarted(){
 }
 
 void AFRGameMode::Tick(float DeltaTime) {
-	if(GetWorld()->IsPlayInEditor()) { return; }
+	if(!GetWorld()->IsGameWorld()) { return; }
 
 	AFRGameState* const MyGameState = Cast<AFRGameState>(GameState);
 	if(MyGameState && !MyGameState->RoundPaused) {

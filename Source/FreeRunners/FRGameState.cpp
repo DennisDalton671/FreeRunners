@@ -17,6 +17,6 @@ void AFRGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLife
 FText AFRGameState::GetTimeAsText() {
 	FNumberFormattingOptions options{};
 	options.MinimumFractionalDigits = 3; options.MaximumFractionalDigits = 3;
-	options.MinimumIntegralDigits = 1;   options.MaximumFractionalDigits = 100;
+	options.MinimumIntegralDigits = 1;   options.MaximumIntegralDigits = 100;
 	return FText::AsNumber(RoundTime, &options);
 }
