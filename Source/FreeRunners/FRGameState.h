@@ -10,10 +10,12 @@ UCLASS()
 class FREERUNNERS_API AFRGameState : public AGameState{
 	GENERATED_BODY()
 public :
-	UPROPERTY(Replicated, BlueprintReadWrite, Transient, Category="FreeRunners")
+	UPROPERTY(Replicated, BlueprintReadWrite, Category="FreeRunners")
 	float RoundTime;
-	UPROPERTY(Replicated, BlueprintReadWrite, Transient, Category="FreeRunners")
+	UPROPERTY(Replicated, BlueprintReadWrite, Category="FreeRunners")
 	bool  RoundPaused;
+	UPROPERTY(Replicated, BlueprintReadWrite, Category = "FreeRunners")
+	int32 PlayerCount;
 
 	AFRGameState();
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> & OutLifetimeProps) const override;

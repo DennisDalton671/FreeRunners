@@ -18,8 +18,6 @@ public:
 	int32 PreRoundTime;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FreeRunners")
 	int32 RespawnDelay;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FreeRunners")
-	int32 PlayerCount;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FreeRunners")
 	TArray<AFRSyncObject*> SyncObjects;

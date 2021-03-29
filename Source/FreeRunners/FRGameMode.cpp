@@ -54,6 +54,7 @@ void AFRGameMode::HandleMatchHasStarted(){
 	AFRGameState* const MyGameState = Cast<AFRGameState>(GameState);
 	MyGameState->RoundTime = 0;		
 	MyGameState->RoundPaused = false;
+	MyGameState->PlayerCount = PlayerControllers.Num();
 
 	// notify players
 	/*
