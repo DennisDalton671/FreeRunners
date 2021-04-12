@@ -7,7 +7,7 @@
 #include "FRGameInstance.generated.h"
 
 UENUM(BlueprintType)
-enum class EFRState : uint8{ Startup, Playing, MainMenu, Loading, Multiplayer, LevelSelect, Settings };
+enum class EFRState : uint8{ None, Playing, MainMenu, Loading, Multiplayer, LevelSelect, Settings };
 
 UENUM(BlueprintType)
 enum class EOnlineMode : uint8{ Offline, LAN, Online };
@@ -41,12 +41,7 @@ public:
 
 	UFRGameInstance(const FObjectInitializer& ObjectInitializer);
 
-	/** Sends the game to the specified state and updates the UI 
-	  * Returns true if the state changed */
+	/** Sends the game to the specified state and updates the UI  */
 	UFUNCTION(BlueprintCallable, Category="FreeRunners")
-	bool TransitionToState(EFRState NewState);
-	// destroys the current session
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="FreeRunners")
-	void DestroyOrLeaveGame();
-	void DestroyOrLeaveGame_Implementation() {}
+	UUserWidget* TransitionToState(EFRState NewState);
 };
